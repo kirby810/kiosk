@@ -1,3 +1,3 @@
 #cafe kiosk project
 ---
-![키오스크](https://github.com/kirby810/kiosk/assets/130022109/ca0c359d-662e-4cb8-8060-36444eb7b5c0)
+![cafe](https://github.com/kirby810/kiosk/assets/130022109/a59f5ce9-8ec8-49b0-998e-645f7dc025ce)
