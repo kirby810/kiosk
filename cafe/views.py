@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import CustomerForm
+from .models import Customer
 
 # Create your views here.
 
@@ -8,7 +9,18 @@ def home(request):
     return render(request, 'home.html')
 
 def order_page(request):
-    return render(request, 'order.html')
+    message = None
+
+    if request.method == 'POST':
+        phone_num = request.POST.get('phone_num')
+        
+        try:
+            customer = Customer.objects.get(phone_num=phone_num)
+            return render(request, 'order_detail.html', {'customer': customer})
+        except Customer.DoesNotExist:
+            message = '고객 정보가 없습니다.'
+
+    return render(request, 'order.html', {'message': message})
 
 #register
 def register(request):
@@ -16,8 +28,8 @@ def register(request):
         form = CustomerForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, '등록 성공!')  # 등록 성공 메시지 추가
-            return redirect('register')  # 같은 페이지로 리다이렉트하여 메시지 표시
+            messages.success(request, '등록 성공!')  
+            return redirect('register') 
     else:
         form = CustomerForm()
     

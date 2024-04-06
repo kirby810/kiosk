@@ -1,3 +1,29 @@
-
-
 <!-- home에서 order버튼 누르면 번호 입력하고 customer 확인하는 페이지 -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Page</title>
+</head>
+<body>
+
+<h1>고객 번호 확인</h1>
+
+<form method="post">
+    {% csrf_token %}
+    <label for="phone_num">Phone Number:</label>
+    <input type="text" id="phone_num" name="phone_num" required>
+    <button type="submit">Check</button>
+</form>
+
+{% if message %}
+    <p>{{ message }}</p>
+{% endif %}
+
+</body>
+</html>
+
+</html>
