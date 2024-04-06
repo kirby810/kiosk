@@ -1,12 +1,13 @@
 {% load static %}
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>main page</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">  
-</head>  
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
 <body>
     <div class="container">
         <div class="bubbles">
@@ -34,12 +35,40 @@
 
         </div>
 
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
         <div class="button-container">
-            <a href="{% url 'register' %}" class="center-button">register</a>
-            <a href="{% url 'order_page' %}" class="center-button">order</a>
+
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+    
+                <button type="submit">Register</button>
+            </form>
+
         </div>
+        
 
     </div>
     
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+

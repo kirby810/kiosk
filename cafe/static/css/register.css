@@ -1,4 +1,4 @@
-/* home page */
+/* registerpage */
 
 *
 {
@@ -92,3 +92,27 @@ body
     background-color: #3a9abf;
 }
 
+
+
+form p label {
+    color: white;
+}
+
+
+form p input[type="text"][name="phone_num"] {
+    width: 205px; 
+}
+
+
+.button-container button[type="submit"] {
+    background-color: #007BFF; 
+    color: white; 
+    padding: 10px 20px; 
+    font-size: 16px;  
+    border: none; 
+    border-radius: 4px;
+    cursor: pointer; 
+    display: block; 
+    margin: 20px auto; 
+    width: 200px; 
+}

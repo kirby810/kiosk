@@ -5,7 +5,7 @@ from django.db import models
 class Customer(models.Model):
     customer_name = models.CharField(max_length=255)
     phone_num = models.CharField(max_length=15, unique=True)
-    point = models.IntegerField(default=0)
+    
 
 
 
