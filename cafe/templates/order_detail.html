@@ -1,14 +1,35 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Order Detail</title>
+    <title>주문 상세</title>
 </head>
 <body>
 
-<h1>Welcome, {{ customer.customer_name }}!</h1>
+<h2>주문 상세</h2>
 
-<!-- 주문 폼 등 주문 페이지 내용 -->
+<p><strong>고객 이름:</strong> {{ customer.customer_name }}</p>
+<p><strong>전화 번호:</strong> {{ customer.phone_num }}</p>
+
+<form method="post">
+    {% csrf_token %}
+    
+    <input type="hidden" name="customer_id" value="{{ customer.id }}">
+    
+    <h3>메뉴 선택</h3>
+    
+    
+    <ul>
+      {% for menu in menus %}
+        <li>{{ menu.menu_name }}</li>
+      {% endfor %}
+    </ul>
+  
+    <button type="submit">주문</button>
+  </form>
 
 </body>
 </html>
+

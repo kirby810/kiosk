@@ -92,3 +92,10 @@ body
     background-color: #3a9abf;
 }
 
+
+.middle {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

@@ -5,6 +5,9 @@ from django.db import models
 class Customer(models.Model):
     customer_name = models.CharField(max_length=255)
     phone_num = models.CharField(max_length=15, unique=True)
+
+    def __str__(self):
+        return self.phone_num
     
 
 
@@ -24,5 +27,11 @@ class Menu(models.Model):
 class Order(models.Model):
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
     menu_id = models.ForeignKey(Menu, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=0)
+
+    def __str__(self):
+        return str(self.customer_id) + ' ' + str(self.menu_id)
+    
+    
 
    

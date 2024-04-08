@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import CustomerForm
-from .models import Customer
+from .models import Customer,Menu, Order
 
-# Create your views here.
+
 
 def home(request):
     return render(request, 'home.html')
@@ -22,7 +22,7 @@ def order_page(request):
 
     return render(request, 'order.html', {'message': message})
 
-#register
+
 def register(request):
     if request.method == 'POST':
         form = CustomerForm(request.POST)
@@ -34,3 +34,24 @@ def register(request):
         form = CustomerForm()
     
     return render(request, 'register.html', {'form': form})
+
+
+def order_detail(request, customer_id):
+    customer = Customer.objects.get(id=customer_id)
+    menus = Menu.objects.all()
+    
+    if request.method == 'POST':
+        customer_id = request.POST.get('customer_id')
+        
+        for menu in menus:
+            quantity = request.POST.get(f'quantity_{menu.id}')
+            
+            if quantity:
+                order = Order(customer_id_id=customer_id, menu_id_id=menu.id, quantity=quantity)
+                order.save()
+        
+        messages.success(request, '주문 성공!')
+        return redirect('home')
+    
+    # GET 요청 처리
+    return render(request, 'order_detail.html', {'customer': customer, 'menus': menus})

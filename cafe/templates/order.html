@@ -1,5 +1,5 @@
 <!-- home에서 order버튼 누르면 번호 입력하고 customer 확인하는 페이지 -->
-
+{% load static %}
 
 
 <!DOCTYPE html>
@@ -7,21 +7,58 @@
 <head>
     <meta charset="UTF-8">
     <title>Order Page</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">  
 </head>
 <body>
 
-<h1>고객 번호 확인</h1>
+    <div class="container">
+        <div class="bubbles">
+            <span style="--i:11;"></span>
+            <span style="--i:12;"></span>
+            <span style="--i:24;"></span>
+            <span style="--i:26;"></span>
+            <span style="--i:10;"></span>
+            <span style="--i:14;"></span>
+            <span style="--i:25;"></span>
+            <span style="--i:19;"></span>
+            <span style="--i:22;"></span>
+            <span style="--i:17;"></span>
+            <span style="--i:14;"></span>
+            <span style="--i:21;"></span>
+            <span style="--i:29;"></span>
+            <span style="--i:12;"></span>
+            <span style="--i:13;"></span>
+            <span style="--i:18;"></span>
+            <span style="--i:20;"></span>
+            <span style="--i:23;"></span>
+            <span style="--i:29;"></span>
+            <span style="--i:26;"></span>
 
-<form method="post">
-    {% csrf_token %}
-    <label for="phone_num">Phone Number:</label>
-    <input type="text" id="phone_num" name="phone_num" required>
-    <button type="submit">Check</button>
-</form>
+        </div>
 
-{% if message %}
-    <p>{{ message }}</p>
-{% endif %}
+        <div class="middle">
+
+            <h1 style="color: white; text-align: center;">고객 번호 확인</h1>
+    
+            <form method="post" style="text-align: center;">
+                {% csrf_token %}
+                <label for="phone_num" style="color: white">Phone Number:</label>
+                <input type="text" id="phone_num" name="phone_num" required>
+                <button type="submit">Check</button>
+            </form>
+    
+            {% if message %}
+                <p>{{ message }}</p>
+            {% endif %}
+        </div>
+
+        
+
+    </div>
+
+
+    
+    
 
 </body>
 </html>

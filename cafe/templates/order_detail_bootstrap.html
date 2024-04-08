@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}order detail{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>{{ customer.customer_name }}님의 주문</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="row mt-4">
+            {% for menu in menus %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{% static 'menu_images/'|add:menu.menu_name|add:'.jpg' %}" class="card-img-top" alt="{{ menu.menu_name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ menu.menu_name }}</h5>
+                        <div class="mb-3">
+                            <label for="quantity_{{ menu.id }}" class="form-label">수량:</label>
+                            <input type="number" class="form-control" id="quantity_{{ menu.id }}" name="quantity_{{ menu.id }}" min="0" value="0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-primary">주문</button>
+    </form>
+</div>
+{% endblock %}
+
+<!-- 화면이 안뜸 -->
